@@ -5,9 +5,13 @@ import axios from "axios";
 import { useForm, useFieldArray } from "react-hook-form";
 
 export default function QuizSetup() {
-  const [positions, setPositions] = useState([]);
   const [selectedPositionId, setSelectedPositionId] = useState("");
   const [quizzes, setQuizzes] = useState([]);
+
+  const positions = [
+    { id: "1", title: "Frontend Intern" },
+    { id: "2", title: "Junior Node Developer" },
+  ];
 
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
@@ -33,15 +37,15 @@ export default function QuizSetup() {
     name: "groups",
   });
 
-  const fetchPositions = async () => {
-    await axios
-      .get("/api/admin/positions")
-      .then((res) => setPositions(res.data));
-  };
+  //   const fetchPositions = async () => {
+  //     await axios
+  //       .get("/api/admin/positions")
+  //       .then((res) => setPositions(res.data));
+  //   };
 
-  useEffect(() => {
-    fetchPositions();
-  }, []);
+  //   useEffect(() => {
+  //     fetchPositions();
+  //   }, []);
 
   const onPositionSelect = async (e) => {
     const id = e.target.value;
